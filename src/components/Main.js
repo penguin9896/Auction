@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Identicon from 'identicon.js';
+import addForm from './AddForm'
 
 class Main extends Component {
 
@@ -20,6 +21,11 @@ class Main extends Component {
 
             </div>
           </main>
+          <div>
+
+
+          </div>
+         
         </div>
       </div>
     );

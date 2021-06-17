@@ -1,6 +1,6 @@
 //SPDX-License-Identifier: GPL-3.0
  
-pragma solidity 0.8.0 ;
+pragma solidity 0.8.0;
  
  
 // this contract will deploy the Auction contract
@@ -10,10 +10,7 @@ contract AuctionCreator{
     uint public numberofcontracts;
     uint public n=0;
     uint public v=0;
-    string public nm ="asd";
- 
     address public owner;
-    address public add;
     
     // receive() payable external{
                 
@@ -22,6 +19,14 @@ contract AuctionCreator{
     // }
     
     
+    
+    
+    constructor (){
+        owner = msg.sender;
+        createAuction();
+        
+    }
+    
     function sets() public{
         n=5;
         string memory mm ="ASdasdasd";
@@ -29,21 +34,15 @@ contract AuctionCreator{
         
     }
     
-    constructor(){
-    owner = msg.sender;
-        
-    createAuction();    
-    }
-    
-    
-    
     // declaring the function that will deploy contract Auction
     function createAuction() public {
         numberofcontracts++;
+
         // passing msg.sender to the constructor of Auction 
-        Auction newAuction = new Auction(payable(msg.sender));
-        
-       auctions.push(newAuction); // adding the address of the instance to the dynamic array
+
+        Auction newAuction = new Auction(payable(msg.sender)); 
+        auctions.push(newAuction); // adding the address of the instance to the dynamic array
+
 //        return(newAuction);
         
     }
@@ -75,7 +74,6 @@ contract Auction{
     uint public highestBindingBid;
      
      int public inc;
-    
     
     address payable public highestBidder;
     mapping(address => uint) public bids;
@@ -180,9 +178,9 @@ contract Auction{
        inc++;
        
         // to place a bid auction should be running
-        require(auctionState == State.Running, "auctionState has Ended and you are not the winner");
+        require(auctionState == State.Running, "Auction has Ended and you are not the winner");
         // minimum value allowed to be sent
-         require(msg.value > 0.0001 ether, "not enough ether sent must be > 0.0001 ether");
+         require(msg.value > 0.0001 ether);
         
         
         uint currentBid = bids[msg.sender] + msg.value;
@@ -231,6 +229,8 @@ contract Auction{
        address payable recipient;
        uint value;
        
+       
+       //this would be for actually having buttons on the UI and each user can get there money back
        /*
        if(auctionState == State.Canceled){ // auction canceled, not ended
            recipient = payable(msg.sender);
@@ -270,7 +270,7 @@ contract Auction{
                    recipient.transfer(value);
         
        
-       for(uint i=0;i<length-1;i++){
+       for(uint i=0;i<=length-1;i++){
            
            recipient = payable(mapl[i]);
            value = bids[recipient];
