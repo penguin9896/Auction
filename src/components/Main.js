@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Identicon from 'identicon.js';
-import addForm from './AddForm'
+
 
 class Main extends Component {
 

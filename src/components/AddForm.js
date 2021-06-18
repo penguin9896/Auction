@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import React, { Component } from 'react';
+import React from 'react';
 
 const AddForm = ({ onAdd }) => {
   const [Name, setName] = useState('')

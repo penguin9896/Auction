@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
-import Identicon from 'identicon.js';
 import './App.css';
-import Decentragram from '../abis/Decentragram.json'
 import Navbar from './Navbar'
 import Main from './Main'
 import AddForm from './AddForm'
@@ -30,7 +28,6 @@ let HighestBidder='';
 let HighestBindingBid =0;
 let auctioncontract;
 let OwnerBalance=0;
-let AuctionHasEned = false;
 
 const formadd = '0xfacD88c9813aFf52a748692B5C639ddc731B613B';
 //Enumerator Auction {}
@@ -60,7 +57,6 @@ class App extends Component {
 
 //const contractAddress = "0x558b22595717B253336587c47fdc5c685c2cB526";
 
-const mycontract = new web3.eth.Contract(ContractABI);
 
   let myContract = new web3.eth.Contract( ContractABI, {
     //  from: '0x74Ab49E03013C7dCa945f794eFdA13BE3Dee364C', // default from address
@@ -252,7 +248,7 @@ componentWillUnmount(){
 
 
   render() {
-const {Owner, AuctionCreatorAddress, AuctionAddress, hasFinished,HighestBindingBid , HighestBidder, timer, state, OwnerBalance}  = this.state;
+const {Owner, AuctionCreatorAddress, AuctionAddress,HighestBindingBid , HighestBidder, timer, state, OwnerBalance}  = this.state;
 
     return (
       <div>
@@ -281,7 +277,7 @@ const {Owner, AuctionCreatorAddress, AuctionAddress, hasFinished,HighestBindingB
               <div> With this project idea I wanted to create an aution that is decentralized and anyone can participate without having to put your credit card information, bank information or any personal information. All you need is ether wallet. I also wanted an auction where it doesnt store users private key in a server since doing that will not make users the true and only owner of the ethereum account. Accounts on exchanges like binance, users on there do not posses the private key which does not make users the owner of the account. Keep in mind you are only the true owner if you possess the private key. The problem with not having the users private key is making calls like canceling your bid in the auction not waiting until the end for the money to return back to you. Multiple ways this can be solved. One way is making a user send a spcific amount to the contract lets say 3$ like a fee for cancelation and the receive function can handle that in the contract. Another and better way would be for a the auction to create a privatekey and publickey per user request. the user will send money to the publickey generated and from there users will have buttons to bid, cancel auction, etc and that generate public key will interact with the contract, and once the auction is done or anytime the user can send ether from the generated publickey back to any wallet of there choosing (which should be done immediately). </div>
               <br></br>
               <br></br>
-              <div>Any suggestions on improvements, Id be happy to hear about it(this form does work in developement since it sends it a smart contract that has already been deployed). Due to Spam it takes 4 new blocks(about 1 minute) to submit the new form.</div>
+              <div>Any suggestions on improvements, Id be happy to hear about it(this form does work in developement since it sends it a smart contract that has already been deployed). Due to Spam it takes 4 new blocks(about 1 minute) to submit a new form.</div>
      <div>
           <AddForm onAdd={this.addForm}></AddForm>
 </div>

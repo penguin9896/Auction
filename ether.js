@@ -1,6 +1,6 @@
 /**
  * this implementation creates a express webserver where you can fetch json information about the auction
- * 
+ * just another way to trying it out for the future
  * / */
 
 const Web3 = require('web3');
