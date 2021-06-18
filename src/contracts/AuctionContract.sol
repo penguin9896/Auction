@@ -8,8 +8,6 @@ contract AuctionCreator{
     // declaring a dynamic array with addresses of deployed contracts
     Auction[] public auctions; 
     uint public numberofcontracts;
-    uint public n=0;
-    uint public v=0;
     address public owner;
     
     // receive() payable external{
@@ -27,12 +25,7 @@ contract AuctionCreator{
         
     }
     
-    function sets() public{
-        n=5;
-        string memory mm ="ASdasdasd";
-        nm = mm;
-        
-    }
+
     
     // declaring the function that will deploy contract Auction
     function createAuction() public {
@@ -48,11 +41,6 @@ contract AuctionCreator{
     }
 
 
-
-    function numberofcontracts_g() public view returns(uint){
-    
-        return numberofcontracts;
-    }
     
 }
  
@@ -207,7 +195,7 @@ contract Auction{
         
         
         
-        if (currentBid <= bids[highestBidder]){ // highestBidder remains unchanged
+        if (currentBid <= bids[highestBidder]){ // when the highestBidder remains unchanged
             highestBindingBid = min(currentBid + bidIncrement, bids[highestBidder]);
         }else{ // highestBidder is another bidder
              highestBindingBid = min(currentBid, bids[highestBidder] + bidIncrement);
@@ -230,7 +218,7 @@ contract Auction{
        uint value;
        
        
-       //this would be for actually having buttons on the UI and each user can get there money back
+       //this would be for actually having buttons on the UI and each user can get there ether back
        /*
        if(auctionState == State.Canceled){ // auction canceled, not ended
            recipient = payable(msg.sender);
@@ -269,7 +257,7 @@ contract Auction{
                    bids[highestBidder] =0;
                    recipient.transfer(value);
         
-       
+       //transfer remaining funds
        for(uint i=0;i<=length-1;i++){
            
            recipient = payable(mapl[i]);
