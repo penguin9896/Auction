@@ -24,7 +24,7 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 
 app.use(express.json());
 
-app.use(express.static(path.join(__dirname, './dist')));
+//app.use(express.static(path.join(__dirname, './dist')));
 
 app.get('/api/eth', (req,res) =>{
     res.json({ AuctionCreatorAddress, AuctionAddress, Owner, hasFinished});
@@ -152,7 +152,6 @@ app.listen(DEFAULT_PORT, () => {
     
     console.log(`listening at localhost: ${DEFAULT_PORT}`)
 
-    //so the default port doesnt syn with itself
     
 });
 
